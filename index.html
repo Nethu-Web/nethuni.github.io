@@ -3,173 +3,381 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Surprise</title>
+<title>A Special Surprise ✨</title>
+
+<!-- Import elegant fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial, sans-serif;
-    height:100vh;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#ff4e8a,#6a11cb,#2575fc);
-    background-size:400% 400%;
-    animation:bgMove 10s ease infinite;
-}
-
-@keyframes bgMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-.card{
-    width:90%;
-    max-width:420px;
-    padding:30px;
-    border-radius:25px;
-    text-align:center;
-    color:white;
-    background:rgba(255,255,255,0.12);
-    backdrop-filter:blur(15px);
-    box-shadow:0 15px 35px rgba(0,0,0,0.25);
-    animation:fadeIn 1.2s ease;
-}
-
-.hidden{
-    display:none;
-}
-
-h1{
-    font-size:34px;
-    margin-bottom:15px;
-}
-
-h2{
-    font-size:42px;
-    color:#ffeb3b;
-    margin-bottom:15px;
-}
-
-p{
-    font-size:20px;
-    line-height:1.5;
-    margin-bottom:25px;
-}
-
-button{
-    border:none;
-    padding:14px 30px;
-    border-radius:30px;
-    font-size:18px;
-    cursor:pointer;
-    color:white;
-    background:linear-gradient(45deg,#ff0066,#ff4d4d);
-    box-shadow:0 5px 15px rgba(0,0,0,0.3);
-    transition:0.3s;
-}
-
-button:hover{
-    transform:scale(1.08);
-}
-
-.photo-box{
-    width:130px;
-    height:130px;
-    margin:0 auto 20px;
-    border-radius:50%;
-    border:4px solid white;
-    overflow:hidden;
-    box-shadow:0 0 20px rgba(255,255,255,0.4);
-}
-
-.photo-box img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-@keyframes fadeIn{
-    from{opacity:0;transform:translateY(25px);}
-    to{opacity:1;transform:translateY(0);}
-}
-
-.heart{
-    position:absolute;
-    color:white;
-    animation:floatUp linear infinite;
-}
-
-@keyframes floatUp{
-    from{
-        transform:translateY(100vh) scale(0.5);
-        opacity:1;
+    :root {
+        --primary: #ff75a0;
+        --secondary: #6a11cb;
+        --accent: #ff4e8a;
+        --highlight: #fbc2eb;
+        --glass: rgba(255, 255, 255, 0.18);
     }
-    to{
-        transform:translateY(-10vh) scale(1.5);
-        opacity:0;
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-}
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Softer, more pastel romantic gradient */
+        background: linear-gradient(-45deg, #a18cd1, #fbc2eb, #f1a7f1, #ffd1ff);
+        background-size: 400% 400%;
+        animation: bgMove 20s ease infinite;
+        color: #4a4a4a;
+    }
+
+    @keyframes bgMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .card-container {
+        position: relative;
+        width: 90%;
+        max-width: 450px;
+        height: 620px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-height: 90vh;
+        padding: 45px 35px;
+        border-radius: 35px;
+        text-align: center;
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.92) translateY(20px);
+        transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        color: #333;
+    }
+
+    .card.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1) translateY(0);
+        z-index: 2;
+    }
+
+    h1 {
+        font-family: 'Dancing Script', cursive;
+        font-size: 40px;
+        color: #d63384;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        margin-bottom: 25px;
+        color: #7a7a7a;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.7;
+        margin-bottom: 25px;
+        color: #555;
+    }
+
+    /* Timeline Styling */
+    .timeline {
+        text-align: left;
+        margin: 25px 0;
+        padding-left: 15px;
+        border-left: 2px solid rgba(214, 51, 132, 0.2);
+    }
+
+    .timeline-item {
+        margin-bottom: 20px;
+        position: relative;
+        padding-left: 20px;
+    }
+
+    .timeline-item::before {
+        content: '✨';
+        position: absolute;
+        left: -24px;
+        top: 2px;
+        font-size: 14px;
+    }
+
+    .timeline-date {
+        font-weight: 600;
+        font-size: 13px;
+        color: #d63384;
+        margin-bottom: 4px;
+    }
+
+    /* Interactive Reasons Section */
+    .reasons-list {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 15px;
+        padding: 15px;
+        margin-bottom: 25px;
+        font-style: italic;
+        font-size: 15px;
+        color: #d63384;
+    }
+
+    /* Gift Box */
+    .gift-container {
+        cursor: pointer;
+        margin: 20px 0;
+        display: inline-block;
+    }
+
+    .gift-icon {
+        font-size: 70px;
+        display: inline-block;
+        transition: transform 0.3s;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0); }
+        50% { transform: translateY(-10px) rotate(5deg); }
+    }
+
+    /* Photo box */
+    .photo-box {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        padding: 6px;
+        background: linear-gradient(45deg, #fbc2eb, #a18cd1);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .photo-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid white;
+    }
+
+    /* Button */
+    button {
+        border: none;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        color: white;
+        background: linear-gradient(45deg, #ff75a0, #d63384);
+        box-shadow: 0 8px 15px rgba(214, 51, 132, 0.2);
+        transition: all 0.3s;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    button:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 12px 20px rgba(214, 51, 132, 0.3);
+    }
+
+    /* Background Elements */
+    .floating-symbol {
+        position: absolute;
+        pointer-events: none;
+        z-index: 0;
+        animation: floatUpSway linear infinite;
+        opacity: 0;
+        color: #d63384;
+    }
+
+    @keyframes floatUpSway {
+        0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+        20% { opacity: 0.4; }
+        100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    .confetti {
+        position: absolute;
+        z-index: 100;
+        pointer-events: none;
+        animation: fall 3s ease-out forwards;
+    }
+
+    @keyframes fall {
+        to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO PAGE -->
-<div class="card" id="intro">
-    <h1>✨ This is for Nethuni 💖</h1>
-    <p>From Chirana ❤️</p>
-    <button onclick="showBirthday()">Open Surprise 🎁</button>
-</div>
-
-<!-- BIRTHDAY PAGE -->
-<div class="card hidden" id="birthday">
-    <h1>🎂 Happy Birthday 🎉</h1>
-    <p>
-        Wishing you a day full of smiles, happiness, love, and all the beautiful moments you deserve 💖
-    </p>
-    <button onclick="showLove()">Continue ✨</button>
-</div>
-
-<!-- LOVE PAGE -->
-<div class="card hidden" id="love">
-
-    <!-- Replace photo.jpg with your image -->
-    <div class="photo-box">
-        <img src="photo.jpg" alt="Photo">
+<div class="card-container">
+    <!-- PAGE 1: INTRO -->
+    <div class="card active" id="intro">
+        <div class="subtitle">Just for you</div>
+        <h1>Hi, Nethuni! ✨</h1>
+        <p>I wanted to make something unique to celebrate your special day. Hope this brings a smile to your face!</p>
+        <div style="font-size: 30px; margin-bottom: 20px;">🌸</div>
+        <button onclick="showPage('memories')">Open Your Surprise</button>
+        <p style="font-size: 12px; margin-top: 20px; opacity: 0.6;">Created by Chirana</p>
     </div>
 
-    <h2>❤️ I Luv U ❤️</h2>
-    <p>You mean more than words can say ✨</p>
+    <!-- PAGE 2: THOUGHTFUL REFLECTION -->
+    <div class="card" id="memories">
+        <div class="subtitle">A few thoughts</div>
+        <h1>Appreciation 📖</h1>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">First Impressions</div>
+                <p>Thinking back to when we first started talking. It’s been great getting to know you.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">The Little Things</div>
+                <div class="reasons-list" id="reasonText">
+                    "Your kindness stands out..."
+                </div>
+            </div>
+        </div>
+        <button onclick="showPage('birthday')">Next Step 🎂</button>
+    </div>
+
+    <!-- PAGE 3: THE WISH -->
+    <div class="card" id="birthday">
+        <div class="subtitle">The Big Day</div>
+        <h1>Happy Birthday! 🎉</h1>
+        <p>
+            Wishing you a year filled with wonderful surprises, success in everything you do, and endless reasons to be happy.
+        </p>
+        <div class="gift-container" onclick="openGift()">
+            <div class="gift-icon" id="giftBox">🎁</div>
+            <div style="font-size: 11px; margin-top: 15px; color: #d63384; font-weight: 600;">TAP TO UNWRAP</div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: FINAL REVEAL -->
+    <div class="card" id="love">
+        <div class="photo-box">
+            <img src="photo.jpg" alt="Special Memory" onerror="this.src='https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=400&q=80'">
+        </div>
+        <h1>Happy Birthday ✨</h1>
+        <p>
+            I’m really glad we met. You’re an amazing person, and I hope your day is as special as you are.
+        </p>
+        <div style="font-family: 'Dancing Script'; font-size: 28px; color: #d63384; margin-bottom: 20px;">
+            With lots of care, Chirana ❤️
+        </div>
+        <button onclick="showPage('intro')">Back to Start</button>
+    </div>
 </div>
 
 <script>
-function showBirthday(){
-    document.getElementById("intro").classList.add("hidden");
-    document.getElementById("birthday").classList.remove("hidden");
-}
+    // Rotating reasons for the "Little things" section
+    const reasons = [
+        "Your kindness stands out...",
+        "The way you make people laugh...",
+        "Your amazing personality...",
+        "How thoughtful you always are..."
+    ];
+    let reasonIndex = 0;
+    
+    setInterval(() => {
+        const el = document.getElementById('reasonText');
+        if (el) {
+            el.style.opacity = 0;
+            setTimeout(() => {
+                reasonIndex = (reasonIndex + 1) % reasons.length;
+                el.innerText = `"${reasons[reasonIndex]}"`;
+                el.style.opacity = 1;
+            }, 500);
+        }
+    }, 3000);
 
-function showLove(){
-    document.getElementById("birthday").classList.add("hidden");
-    document.getElementById("love").classList.remove("hidden");
-}
+    function showPage(pageId) {
+        document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+    }
 
-for(let i=0;i<25;i++){
-    let heart=document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML="❤";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.animationDuration=(Math.random()*5+4)+"s";
-    heart.style.fontSize=(Math.random()*20+15)+"px";
-    document.body.appendChild(heart);
-}
+    function openGift() {
+        const gift = document.getElementById('giftBox');
+        gift.style.transform = 'scale(2) rotate(20deg)';
+        gift.style.opacity = '0';
+        
+        // Burst of celebration
+        for(let i=0; i<50; i++) {
+            createConfetti();
+        }
+
+        setTimeout(() => {
+            showPage('love');
+            setTimeout(() => { 
+                gift.style.transform = ''; 
+                gift.style.opacity = '1';
+            }, 1000);
+        }, 800)
+    }
+
+    function createConfetti() {
+        const items = ['✨', '🌸', '💖', '⭐', '🍬'];
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.innerHTML = items[Math.floor(Math.random() * items.length)];
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = '50vh'; // Start from middle
+        confetti.style.fontSize = Math.random() * 15 + 15 + 'px';
+        
+        // Random trajectory
+        const destX = (Math.random() - 0.5) * 500;
+        const destY = (Math.random() - 0.5) * 500;
+        
+        confetti.animate([
+            { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+            { transform: `translate(${destX}px, ${destY}px) scale(0)`, opacity: 0 }
+        ], {
+            duration: 2000 + Math.random() * 1000,
+            easing: 'cubic-bezier(0, .9, .57, 1)'
+        });
+
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+    }
+
+    // Background floating elements
+    const symbols = ['🌸', '✨', '☁️', '🤍'];
+    for (let i = 0; i < 15; i++) {
+        let el = document.createElement("div");
+        el.classList.add("floating-symbol");
+        el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.top = Math.random() * 100 + "vh";
+        el.style.animationDuration = (Math.random() * 10 + 10) + "s";
+        el.style.animationDelay = (Math.random() * 5) + "s";
+        el.style.fontSize = (Math.random() * 10 + 10) + "px";
+        document.body.appendChild(el);
+    }
 </script>
 
 </body>
